@@ -7,7 +7,7 @@ Please keep in mind that the project is for showcase purposes only and the used 
 
 The project is following the work from Adrian by JSMasteryPRO teaching the connection of Rapid API in a MERN Stack Environment.
 
-The project is still under development and the current GitHub Repository is still unfinished.
+The project is still under development.
 
 ## Questions?
 

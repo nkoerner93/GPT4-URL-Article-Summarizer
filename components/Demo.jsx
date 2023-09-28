@@ -1,4 +1,6 @@
-import React from "react";
+import { useEffect, useState } from "react";
+
+import { copy, linkIcon, loader, tick } from "../assets";
 
 const Demo = () => {
   return (
