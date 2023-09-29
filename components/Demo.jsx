@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { copy, linkIcon, loader, tick } from "../src/assets/";
+import copyToClipboard from "../utils/CopyToClipboard";
 
 const Demo = () => {
   const [article, setArticle] = useState("");
@@ -40,7 +41,7 @@ const Demo = () => {
       </form>
       {browserHistory.length > 0 ? (
         <section id="history_Container" className="mt-8">
-          <table className="table-auto text-left">
+          <table className="table-auto text-left border-collapse border border-slate-400">
             <thead>
               <tr>
                 <th>Your URL-History:</th>
@@ -49,7 +50,12 @@ const Demo = () => {
             <tbody id="browserHistory">
               {browserHistory.map((url, index) => (
                 <tr key={index}>
-                  <td>{url}</td>
+                  <td>
+                    <a href="{url}">{url}</a>
+                    <span>
+                      <button onClick={handleCopy}>Copy</button>
+                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>
