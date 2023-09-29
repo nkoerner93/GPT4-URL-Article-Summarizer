@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { copy, linkIcon, loader, tick } from "../src/assets/";
 import copyToClipboard from "../utils/CopyToClipboard";
+import { AiOutlineEnter } from "react-icons/ai";
 
 const Demo = () => {
   const [article, setArticle] = useState("");
@@ -20,7 +21,6 @@ const Demo = () => {
   return (
     <section className="mt-16 w-full max-w-xl">
       {/* Search */}
-      <div className="flex flex-col w-full gap-2"></div>
       <form
         className="relative flex justify-center items-center"
         onSubmit={handleSubmit}
@@ -36,14 +36,17 @@ const Demo = () => {
           value={article}
           onChange={handleChange}
           required
-          className="url_input peer"
+          className="url_input peer valid:border-green-400"
         ></input>
+        <span className="absolute right-2 invisible peer-focus:visible">
+          <AiOutlineEnter />
+        </span>
       </form>
       {browserHistory.length > 0 ? (
         <section id="history_Container" className="mt-8">
-          <table className="table-auto text-left border-collapse border border-slate-400">
+          <table className="table-auto text-left w-full">
             <thead>
-              <tr>
+              <tr className=" bg-slate-100">
                 <th>Your URL-History:</th>
               </tr>
             </thead>
@@ -51,10 +54,9 @@ const Demo = () => {
               {browserHistory.map((url, index) => (
                 <tr key={index}>
                   <td>
-                    <a href="{url}">{url}</a>
-                    <span>
-                      <button onClick={handleCopy}>Copy</button>
-                    </span>
+                    <a href={url} target="_blank">
+                      {url}
+                    </a>
                   </td>
                 </tr>
               ))}
