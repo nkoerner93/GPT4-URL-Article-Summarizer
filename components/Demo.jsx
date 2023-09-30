@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 
 import { copy, linkIcon, loader, tick } from "../src/assets/";
 import copyToClipboard from "../utils/CopyToClipboard";
-import { AiOutlineEnter } from "react-icons/ai";
 
 const Demo = () => {
-  const [article, setArticle] = useState("");
+  const [article, setArticle] = useState({ url: "", summary: "" });
   const [browserHistory, setBrowserHistory] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setBrowserHistory([...browserHistory, article]); // Add the new article to browserHistory
-    setArticle(""); // Reset the input field after submission
+    setBrowserHistory([...browserHistory, article.url]); // Add the new article to browserHistory
+    setArticle({ url: "", summary: "" }); // Reset the input fields after submission
+    alert("Submitted");
   };
 
   const handleChange = (e) => {
-    setArticle(e.target.value);
+    setArticle({ ...article, url: e.target.value });
   };
 
   return (
@@ -33,8 +33,10 @@ const Demo = () => {
         <input
           type="url"
           placeholder="Enter a URL"
-          value={article}
-          onChange={handleChange}
+          value={article.url}
+          onChange={(e) => {
+            setArticle({ ...article, url: e.target.value });
+          }}
           required
           className="url_input peer valid:border-green-400"
         ></input>
