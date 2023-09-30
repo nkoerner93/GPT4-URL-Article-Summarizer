@@ -38,15 +38,20 @@ const Demo = () => {
           required
           className="url_input peer valid:border-green-400"
         ></input>
-        <span className="absolute right-2 invisible peer-focus:visible">
-          <AiOutlineEnter />
-        </span>
+        <button
+          type="submit"
+          className="submit_btn peer-focus:border-gray-700 peer-focus:text-gray-700 "
+        >
+          <p>↵</p>
+        </button>
       </form>
+
+      {/* Show Browser History */}
       {browserHistory.length > 0 ? (
         <section id="history_Container" className="mt-8">
-          <table className="table-auto text-left w-full">
+          <table className="table-auto text-left w-full rounded-md border-spacing-2">
             <thead>
-              <tr className=" bg-slate-100">
+              <tr className="">
                 <th>Your URL-History:</th>
               </tr>
             </thead>
@@ -64,6 +69,8 @@ const Demo = () => {
           </table>
         </section>
       ) : null}
+
+      {/* Display Results */}
     </section>
   );
 };
