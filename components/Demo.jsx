@@ -11,7 +11,6 @@ const Demo = () => {
     e.preventDefault();
     setBrowserHistory([...browserHistory, article.url]); // Add the new article to browserHistory
     setArticle({ url: "", summary: "" }); // Reset the input fields after submission
-    alert("Submitted");
   };
 
   const handleChange = (e) => {
