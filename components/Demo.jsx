@@ -34,7 +34,7 @@ const Demo = () => {
 
     if (existingArticle) return setArticle(existingArticle);
 
-    const { data } = await getSummary({ articleUrl: article.url });
+    const { data } = await getSummary({ articleURL: article.url });
     if (data?.summary) {
       const newArticle = { ...article, summary: data.summary };
       const updatedAllArticles = [newArticle, ...allArticles];
