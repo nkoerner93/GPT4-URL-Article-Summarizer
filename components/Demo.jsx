@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import { copy, linkIcon, loader, tick } from "../src/assets/";
-import copyToClipboard from "../utils/CopyToClipboard";
 
 const Demo = () => {
   const [article, setArticle] = useState({ url: "", summary: "" });
