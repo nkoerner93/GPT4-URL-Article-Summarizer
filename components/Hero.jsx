@@ -8,7 +8,7 @@ const Hero = () => {
         <button
           type="button"
           onClick={() => {
-            window.open("https://github.com/nkoerner93");
+            window.open("https://github.com/nkoerner93/Project_AISummarizer");
           }}
           className="bg-black text-white py-2 px-4 rounded-md font-bold hover:bg-gray-100 hover:text-black border-black"
         >
