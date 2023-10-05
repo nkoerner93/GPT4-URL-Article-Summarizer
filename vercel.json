@@ -2,14 +2,11 @@
     "version": 2,
     "builds": [
       {
-        "src": "/frontend",
+        "src": "/",
         "use": "@vercel/static-vite",
         "config": {
           "distDir": "dist"
         }
       }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "/frontend/$1" }
     ]
   }
