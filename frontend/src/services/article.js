@@ -19,6 +19,9 @@ export const articleApi = createApi({
     getSummary: builder.query({
       query: (params) =>
         `/summarize?url=${encodeURIComponent(params.articleURL)}&length=3}`,
+      getSummaryFromMongoDB: builder.query({
+        query: (url) => {},
+      }),
     }),
   }),
 });
