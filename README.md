@@ -1,4 +1,4 @@
-# Project_AISummarizer
+# GPT-4 URL Article Summarizer
 
 ## Introduction
 
