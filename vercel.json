@@ -3,7 +3,10 @@
     "builds": [
       {
         "src": "/frontend",
-        "use": "@vercel/static-build"
+        "use": "@vercel/static-vite",
+        "config": {
+          "distDir": "dist"
+        }
       }
     ],
     "routes": [
