@@ -3,32 +3,32 @@ import { Summary } from "../models/summaryModel.js";
 
 const router = express.Router();
 
-router.get("/summaries", async (req, res) => {
+// GET Summaries
+router.get("/summaries", async (requestuest, response) => {
   try {
-    const { url } = req.query;
-
+    const { url } = requestuest.query;
     if (url) {
-      const summaries = await Summary.findOne({ url });
-      return res.json(summaries);
+      const Summaries = await Summary.findOne(Summary.url);
+      response.status(200).json(Summaries);
     } else {
-      const summaries = await Summary.find();
-      return res.json(summaries);
+      const Summaries = await Summary.find();
+      response.status(200).json(Summaries);
     }
   } catch (error) {
     console.log(error.message);
-    res.status(500).send({ message: error.message });
   }
 });
 
-router.post("/summaries", async (req, res) => {
-  const { url, summary } = req.body;
+// POST Summaries
+router.post("/summaries", async (request, reponse) => {
+  const { url, summary } = request.body;
 
   try {
     const newSummary = new Summary({ url, summary });
     await newSummary.save();
-    res.status(201).json(newSummary);
+    reponse.status(201).json(newSummary);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    reponse.status(400).json({ message: error.message });
   }
 });
 
