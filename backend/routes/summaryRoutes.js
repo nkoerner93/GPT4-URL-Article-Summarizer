@@ -1,14 +1,22 @@
 import express from "express";
-import { Summary } from "./models/summaryModel";
+import { Summary } from "../models/summaryModel.js";
 
 const router = express.Router();
 
 router.get("/summaries", async (req, res) => {
   try {
-    const summaries = await Summary.find();
-    res.json(summaries);
+    const { url } = req.query;
+
+    if (url) {
+      const summaries = await Summary.findOne({ url });
+      return res.json(summaries);
+    } else {
+      const summaries = await Summary.find();
+      return res.json(summaries);
+    }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
   }
 });
 
