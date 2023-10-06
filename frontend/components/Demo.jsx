@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useLazyGetSummaryQuery } from "../src/services/article";
-
 import { copy, linkIcon, loader, tick } from "../src/assets/";
 
 const Demo = () => {
@@ -33,6 +32,8 @@ const Demo = () => {
     );
 
     if (existingArticle) return setArticle(existingArticle);
+
+    //
 
     const { data } = await getSummary({ articleURL: article.url });
     if (data?.summary) {
