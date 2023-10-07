@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLazyGetSummaryQuery } from "../src/services/article";
 import { copy, linkIcon, loader, tick } from "../src/assets/";
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
-import fetchData from "../utils/fetchDatabase";
+import fetchDatabase from "../utils/fetchDatabase.js";
 
 const Demo = () => {
   // Get API URL from .env
@@ -33,20 +33,20 @@ const Demo = () => {
     e.preventDefault();
 
     try {
-      const databaseEntry = await fetchData(api, article.url);
-
-      if (databaseEntry.url === article.url) {
+      const getSummaries = await fetchDatabase(api, "GET", article.url);
+      // Check if Database entry
+      if (getSummaries.url === article.url) {
         console.log("Database Eintrag existiert und ist nicht null");
         // If data is not null (entry found in the database), use it
-        console.log(`${databaseEntry.url} + ${databaseEntry.summary}`);
-        setArticle({ url: databaseEntry.url, summary: databaseEntry.summary });
+        console.log(`${getSummaries.url} + ${getSummaries.summary}`);
+        setArticle({ url: getSummaries.url, summary: getSummaries.summary });
       } else {
         console.log("Database Eintrag existiert nicht - fetche von rapidAPI");
         const { data } = await getSummary({ articleURL: article.url });
         if (data?.summary) {
           const newArticle = { ...article, summary: data.summary };
           const updatedAllArticles = [newArticle, ...allArticles];
-
+          fetchDatabase(api, "POST", newArticle);
           // update state and local storage
           setArticle(newArticle);
           setAllArticles(updatedAllArticles);
