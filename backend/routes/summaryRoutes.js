@@ -4,9 +4,9 @@ import { Summary } from "../models/summaryModel.js";
 const router = express.Router();
 
 // GET Summaries
-router.get("/summaries", async (requestuest, response) => {
+router.get("/summaries", async (request, response) => {
   try {
-    const { url } = requestuest.query;
+    const { url } = request.query;
     if (url) {
       const Summaries = await Summary.findOne(Summary.url);
       response.status(200).json(Summaries);

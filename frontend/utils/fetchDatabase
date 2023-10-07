@@ -1,0 +1,20 @@
+export default async function fetchData(api, url) {
+  try {
+    let requestUrl = `${api}/summaries`;
+
+    if (url) {
+      requestUrl += `?url=${url}`;
+    }
+    const response = await fetch(requestUrl);
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    } else {
+      const data = await response.json(); // Parse response body as JSON
+      return data;
+    }
+  } catch (error) {
+    // Handle errors here
+    console.error("Error:", error);
+  }
+}

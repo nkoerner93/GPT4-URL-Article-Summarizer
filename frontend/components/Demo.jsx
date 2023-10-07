@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLazyGetSummaryQuery } from "../src/services/article";
 import { copy, linkIcon, loader, tick } from "../src/assets/";
+import { fetchBaseQuery } from "@reduxjs/toolkit/query";
+import fetchData from "../utils/fetchDatabase";
 
 const Demo = () => {
+  // Get API URL from .env
+  const api = import.meta.env.VITE_BACKEND_API;
+
   const [article, setArticle] = useState({
     url: "",
     summary: "",
@@ -27,23 +32,30 @@ const Demo = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const existingArticle = allArticles.find(
-      (item) => item.url === article.url
-    );
+    try {
+      const databaseEntry = await fetchData(api, article.url);
 
-    if (existingArticle) return setArticle(existingArticle);
+      if (databaseEntry.url === article.url) {
+        console.log("Database Eintrag existiert und ist nicht null");
+        // If data is not null (entry found in the database), use it
+        console.log(`${databaseEntry.url} + ${databaseEntry.summary}`);
+        setArticle({ url: databaseEntry.url, summary: databaseEntry.summary });
+      } else {
+        console.log("Database Eintrag existiert nicht - fetche von rapidAPI");
+        const { data } = await getSummary({ articleURL: article.url });
+        if (data?.summary) {
+          const newArticle = { ...article, summary: data.summary };
+          const updatedAllArticles = [newArticle, ...allArticles];
 
-    //
-
-    const { data } = await getSummary({ articleURL: article.url });
-    if (data?.summary) {
-      const newArticle = { ...article, summary: data.summary };
-      const updatedAllArticles = [newArticle, ...allArticles];
-
-      // update state and local storage
-      setArticle(newArticle);
-      setAllArticles(updatedAllArticles);
-      localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
+          // update state and local storage
+          setArticle(newArticle);
+          setAllArticles(updatedAllArticles);
+          localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
+        }
+      }
+    } catch (error) {
+      // Handle any errors from fetchData or other code
+      console.error(error);
     }
   };
 
