@@ -3,7 +3,7 @@ dotenv.config({ path: "./.env" });
 import express from "express";
 import mongoose from "mongoose";
 import { Summary } from "./models/summaryModel.js";
-import router from "./routes/SummaryRoutes.js";
+import router from "./routes/summaryRoutes.js";
 import cors from "cors";
 
 // Import Variables Variables
