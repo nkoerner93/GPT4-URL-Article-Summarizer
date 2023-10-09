@@ -3,7 +3,7 @@ dotenv.config({ path: "./.env" });
 import express from "express";
 import mongoose from "mongoose";
 import { Summary } from "./models/summaryModel.js";
-import summaryRoutes from "./routes/SummaryRoutes.js";
+import router from "./routes/SummaryRoutes.js";
 import cors from "cors";
 
 // Import Variables Variables
@@ -44,4 +44,4 @@ process.on("SIGINT", () => {
   });
 });
 
-app.use("/api", summaryRoutes);
+app.use("/api", router);
