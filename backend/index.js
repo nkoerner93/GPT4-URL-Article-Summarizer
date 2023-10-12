@@ -16,14 +16,14 @@ app.use(express.json());
 
 // Setup CORS
 const corsOptions = {
-  origin: "http://localhost:5173", // Replace with your allowed origin
+  origin: "https://website-summarizer-ten.vercel.app", // Replace with your allowed origin
 };
 
 app.use(cors(corsOptions));
 
 // Setup LISTEN
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on Port: ${port}`);
 });
 
 // Connect MongoDB
