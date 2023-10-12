@@ -1,4 +1,4 @@
 export const BACKEND_URLS = {
-  summaries: `http://localhost:5000/api/summaries`,
+  summaries: `https://backend-ai-summarizer.onrender.com/api/summaries`,
   // Add more endpoints as needed
 };
