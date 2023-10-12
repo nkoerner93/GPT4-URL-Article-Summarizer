@@ -29,6 +29,12 @@ const Demo = () => {
     }
   }, []);
 
+  // MEMO Articles to avoid re-sorting of Browser History
+  const sortedArticles = useMemo(
+    () => [...allArticles].reverse(),
+    [allArticles]
+  );
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -74,6 +80,7 @@ const Demo = () => {
 
   return (
     <section className="mt-16 w-full max-w-3xl">
+      {console.log(VITE_BACKEND_API)}
       {/* Search */}
       <form
         className="relative flex justify-center items-center"
@@ -104,7 +111,7 @@ const Demo = () => {
 
       {/* Browse History */}
       <div className="flex flex-col gap-1 max-h-60 overflow-y-auto">
-        {allArticles.reverse().map((item, index) => (
+        {sortedArticles.map((item, index) => (
           <div
             key={`link-${index}`}
             onClick={() => setArticle(item)}
