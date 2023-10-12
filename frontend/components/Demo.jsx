@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useLazyGetSummaryQuery } from "../src/services/article";
 import { copy, linkIcon, loader, tick } from "../src/assets/";
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
