@@ -42,12 +42,11 @@ const Demo = () => {
       const getSummaries = await fetchDatabase(api, "GET", article.url);
       // Check if Database entry
       if (getSummaries.url === article.url) {
-        console.log("Database Eintrag existiert und ist nicht null");
+        // Database Eintrag existiert und ist nicht null
         // If data is not null (entry found in the database), use it
-        console.log(`${getSummaries.url} + ${getSummaries.summary}`);
         setArticle({ url: getSummaries.url, summary: getSummaries.summary });
       } else {
-        console.log("Database Eintrag existiert nicht - fetche von rapidAPI");
+        // Database Eintrag existiert nicht - fetche von rapidAPI"
         const { data } = await getSummary({ articleURL: article.url });
         if (data?.summary) {
           const newArticle = { ...article, summary: data.summary };
@@ -80,7 +79,6 @@ const Demo = () => {
 
   return (
     <section className="mt-16 w-full max-w-3xl">
-      {console.log(VITE_BACKEND_API)}
       {/* Search */}
       <form
         className="relative flex justify-center items-center"
