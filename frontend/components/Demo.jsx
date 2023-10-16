@@ -139,6 +139,9 @@ const Demo = () => {
             <br />
             <span className="font-satoshi font-normal text-gray-700">
               {error?.data?.error}
+              <br />
+              The requested API Endpoint is currently offline and out of our
+              control.
             </span>
           </p>
         ) : (
